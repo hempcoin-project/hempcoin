@@ -55,8 +55,8 @@ script:
     RESULT=$?; if [ $RESULT -eq 0 ] || [ $RESULT -eq 142 ]; then true; else false; fi;
 before_deploy:
 # Set up git user name and tag this commit
-      - git config --local user.name "basedev"
-      - git config --local user.email "lukewell.wells@gmail.com"
+      - git config --local user.name "mo-bay"
+      - git config --local user.email "mabaig@me.com"
       - git tag "$(date +'%Y%m%d%H%M%S')-$(git log --format=%h -1)"
       - "./pre-deploy.sh"
 deploy:
@@ -65,7 +65,7 @@ deploy:
   file: out/**/zip/*
   skip_cleanup: true
   on:
-    repo: thebasechain/vosene
+    repo: hempcoin-project/hempcoin
   on:
     tags: true  
 deploy:
@@ -78,7 +78,7 @@ deploy:
   upload-dir: $TRAVIS_JOB_NUMBER
   acl: public_read
   on:
-    repo: thebasechain/vosene
+    repo: hempcoin-project/hempcoin
     cache_control: "max-age=21600"
     on:
       all_branches: true
