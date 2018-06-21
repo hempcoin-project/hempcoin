@@ -37,6 +37,4 @@ More information at [hempcoin.org](https://www.hempcoin.org) Visit our ANN threa
 <th colspan=4>PoW Phase</th>
 <tr><th>Block Height</th><th>Reward Amount</th><th>Notes</th><th>Duration (Days)</th></tr>
 <tr><td>1</td><td>240,000,000 THC</td><td>Initial Premine for Coin Swap</td><td>0 Days</td></tr>
-<tr><th colspan=4>PoS Phase</th></tr>
-<td colspan=2>Masternodes: 60%</td><td>Stakers: 20%</td><td>Budget: 20%</td></tr>
-</table>
+
