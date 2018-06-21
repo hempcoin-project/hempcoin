@@ -55,8 +55,8 @@ script:
     RESULT=$?; if [ $RESULT -eq 0 ] || [ $RESULT -eq 142 ]; then true; else false; fi;
 before_deploy:
 # Set up git user name and tag this commit
-      - git config --local user.name "mo-bay"
-      - git config --local user.email "mabaig@me.com"
+      - git config --local user.name "hempcoin"
+      - git config --local user.email "dev@hempcoin.org"
       - git tag "$(date +'%Y%m%d%H%M%S')-$(git log --format=%h -1)"
       - "./pre-deploy.sh"
 deploy:
@@ -72,7 +72,7 @@ deploy:
   provider: s3
   access_key_id: $AWS_ACCESS_KEY_ID
   secret_access_key: $AWS_SECRET_ACCESS_KEY
-  bucket: alors
+  bucket: thcwallets
   skip_cleanup: true
   local_dir:  $TRAVIS_BUILD_DIR/out/$TRAVIS_PULL_REQUEST/$TRAVIS_JOB_NUMBER-$HOST
   upload-dir: $TRAVIS_JOB_NUMBER
