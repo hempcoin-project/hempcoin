@@ -1,0 +1,12 @@
+[Desktop Entry]
+Encoding=UTF-8
+Name=Hempcoin
+Comment=Hempcoin P2P Cryptocurrency
+Comment[fr]=Hempcoin, monnaie virtuelle cryptographique pair à pair
+Comment[tr]=Hempcoin, eşten eşe kriptografik sanal para birimi
+Exec=hempcoin-qt %u
+Terminal=false
+Type=Application
+Icon=hempcoin128
+MimeType=x-scheme-handler/hempcoin;
+Categories=Office;Finance;

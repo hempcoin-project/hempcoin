@@ -1,0 +1,30 @@
+<!DOCTYPE RCC><RCC version="1.0">
+    <qresource prefix="/translations">
+        <file alias="bg">locale/hempcoin_bg.qm</file>
+        <file alias="ca">locale/hempcoin_ca.qm</file>
+        <file alias="cs">locale/hempcoin_cs.qm</file>
+        <file alias="da">locale/hempcoin_da.qm</file>
+        <file alias="de">locale/hempcoin_de.qm</file>
+        <file alias="en">locale/hempcoin_en.qm</file>
+        <file alias="en_US">locale/hempcoin_en_US.qm</file>
+        <file alias="es">locale/hempcoin_es.qm</file>
+        <file alias="fi">locale/hempcoin_fi.qm</file>
+        <file alias="fr_FR">locale/hempcoin_fr_FR.qm</file>
+        <file alias="hr">locale/hempcoin_hr.qm</file>
+        <file alias="it">locale/hempcoin_it.qm</file>
+        <file alias="ja">locale/hempcoin_ja.qm</file>
+        <file alias="ko_KR">locale/hempcoin_ko_KR.qm</file>
+        <file alias="nl">locale/hempcoin_nl.qm</file>
+        <file alias="pl">locale/hempcoin_pl.qm</file>
+        <file alias="pt">locale/hempcoin_pt.qm</file>
+        <file alias="pt_BR">locale/hempcoin_pt_BR.qm</file>
+        <file alias="ro_RO">locale/hempcoin_ro_RO.qm</file>
+        <file alias="ru">locale/hempcoin_ru.qm</file>
+        <file alias="sk">locale/hempcoin_sk.qm</file>
+        <file alias="sv">locale/hempcoin_sv.qm</file>
+        <file alias="tr">locale/hempcoin_tr.qm</file>
+        <file alias="uk">locale/hempcoin_uk.qm</file>
+        <file alias="zh_CN">locale/hempcoin_zh_CN.qm</file>
+        <file alias="zh_TW">locale/hempcoin_zh_TW.qm</file>
+    </qresource>
+</RCC>

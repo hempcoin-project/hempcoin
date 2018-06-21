@@ -1,0 +1,26 @@
+[Unit]
+Description=Hempcoin's distributed currency daemon
+After=network.target
+
+[Service]
+User=hempcoin
+Group=hempcoin
+
+Type=forking
+PIDFile=/var/lib/hempcoind/hempcoind.pid
+
+ExecStart=/usr/bin/hempcoind -daemon -pid=/var/lib/hempcoind/hempcoind.pid \
+          -conf=/etc/hempcoin/hempcoin.conf -datadir=/var/lib/hempcoind
+
+ExecStop=-/usr/bin/hempcoin-cli -conf=/etc/hempcoin/hempcoin.conf \
+         -datadir=/var/lib/hempcoind stop
+
+Restart=always
+PrivateTmp=true
+TimeoutStopSec=60s
+TimeoutStartSec=2s
+StartLimitInterval=120s
+StartLimitBurst=5
+
+[Install]
+WantedBy=multi-user.target
