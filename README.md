@@ -1,5 +1,5 @@
 
-[![Build Status](https://travis-ci.org/hempcoin-project/hempcoin.svg?branch=master)](https://travis-ci.org/hempcoin-project/hempcoin
+[![Build Status](https://travis-ci.org/hempcoin-project/hempcoin.svg?branch=master)](https://travis-ci.org/hempcoin-project/hempcoin)
 
 
 
