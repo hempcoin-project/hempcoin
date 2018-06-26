@@ -28,7 +28,7 @@ Drag Hempcoin-Qt to your applications folder, and then run Hempcoin-Qt.
 
 * See the documentation at the [Hempcoin Wiki](https://en.bitcoin.it/wiki/Main_Page) ***TODO***
 for help and more information.
-* Ask for help on [BitcoinTalk](https://bitcointalk.org/index.php?topic=2956408.0).
+* Ask for help on [BitcoinTalk](https://bitcointalk.org/index.php?topic=506320.0).
 * Join one of our Discord groups [Hempcoin Discord Groups](https://discord.gg/8tbvMQM).
 
 Building
@@ -55,8 +55,9 @@ The Hempcoin repo's [root README](https://github.com/hempcoin-project/hempcoin/b
 
 ### Resources
 
-* Discuss on the [BitcoinTalk](https://bitcointalk.org/index.php?topic=2956408.0) .
-* Join the [Hempcoin Discord Group](https://discord.gg/8tbvMQM).
+* Discuss on the [BitcoinTalk](https://bitcointalk.org/index.php?topic=506320.0) .
+* Join the [Hempcoin Discord Group](https://discord.gg/VStxaRy).
+* Join the [Hempcoin Telegram Group](https://t.me/HempCoinOfficial).
 
 ### Miscellaneous
 - [Assets Attribution](assets-attribution.md)
