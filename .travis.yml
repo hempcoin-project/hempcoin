@@ -60,15 +60,6 @@ before_deploy:
       - git tag "$(date +'%Y%m%d%H%M%S')-$(git log --format=%h -1)"
       - "./pre-deploy.sh"
 deploy:
-  provider: releases
-  api_key:
-  file: out/**/zip/*
-  skip_cleanup: true
-  on:
-    repo: hempcoin-project/hempcoin
-  on:
-    tags: true  
-deploy:
   provider: s3
   access_key_id: $AWS_ACCESS_KEY_ID
   secret_access_key: $AWS_SECRET_ACCESS_KEY
