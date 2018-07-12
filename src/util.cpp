@@ -424,13 +424,13 @@ void PrintExceptionContinue(std::exception* pex, const char* pszThread)
 boost::filesystem::path GetDefaultDataDir()
 {
     namespace fs = boost::filesystem;
-// Windows < Vista: C:\Documents and Settings\Username\Application Data\Hempcoin
-// Windows >= Vista: C:\Users\Username\AppData\Roaming\Hempcoin
-// Mac: ~/Library/Application Support/Hempcoin
+// Windows < Vista: C:\Documents and Settings\Username\Application Data\thc
+// Windows >= Vista: C:\Users\Username\AppData\Roaming\thc
+// Mac: ~/Library/Application Support/thc
 // Unix: ~/.hempcoin
 #ifdef WIN32
     // Windows
-    return GetSpecialFolderPath(CSIDL_APPDATA) / "Hempcoin";
+    return GetSpecialFolderPath(CSIDL_APPDATA) / "thc";
 #else
     fs::path pathRet;
     char* pszHome = getenv("HOME");
@@ -442,10 +442,10 @@ boost::filesystem::path GetDefaultDataDir()
     // Mac
     pathRet /= "Library/Application Support";
     TryCreateDirectory(pathRet);
-    return pathRet / "Hempcoin";
+    return pathRet / "thc";
 #else
     // Unix
-    return pathRet / ".hempcoin";
+    return pathRet / ".thc";
 #endif
 #endif
 }
