@@ -33,6 +33,7 @@ else
 fi
 
 cd $OUTDIR/bin
+ls -ah
 ARCHIVE_CMD="$ARCHIVE_CMD $ARCHIVE_NAME *"
 eval $ARCHIVE_CMD
 
