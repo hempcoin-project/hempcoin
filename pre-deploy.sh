@@ -23,7 +23,7 @@ elif [[ $HOST = "thc-x86_64-apple-darwin11" ]]; then
 fi
 
 if [[ $HOST = "x86_64-apple-darwin11" ]]; then
-    find $TRAVIS_BUILD_DIR -type f | grep -i hempcoin-Core.dmg$ | xargs -i cp {} $OUTDIR/bin
+    find $TRAVIS_BUILD_DIR -type f | grep -ir *-*.dmg$ | xargs -i cp {} $OUTDIR/bin
 else
     cp $TRAVIS_BUILD_DIR/src/qt/hempcoin-qt $OUTDIR/bin/ || cp $TRAVIS_BUILD_DIR/src/qt/hempcoin-qt.exe $OUTDIR/bin/ || echo "no QT Wallet"
     cp $TRAVIS_BUILD_DIR/src/hempcoind $OUTDIR/bin/ || cp $TRAVIS_BUILD_DIR/src/hempcoind.exe $OUTDIR/bin/
