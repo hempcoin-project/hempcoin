@@ -1,11 +1,5 @@
 
 [![Build Status](https://travis-ci.org/hempcoin-project/hempcoin.svg?branch=master)](https://travis-ci.org/hempcoin-project/hempcoin)
-
-
-
-### Compiling with boost other than 1.54 will create a malfunctioning wallet. This is the default version on Ubuntu 14.04, but newer versions will come with newer boost versions.
-
-
 # Hempcoin Core integration/staging repository
 
 
