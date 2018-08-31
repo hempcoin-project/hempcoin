@@ -253,7 +253,7 @@ public:
         genesis.nNonce = 79855;
 
 	    hashGenesisBlock = genesis.GetHash();
-        assert(hashGenesisBlock == uint256("0x00000f3754a6e15399215e07fece11afd305cb96b0c4a49d1ffcdf5d949ec877"));
+        assert(hashGenesisBlock == uint256("0x0c4e48241fb86ae8595322569830b128f3f75b2b5f8734aeb7b5053adffd51ee"));
 
         vFixedSeeds.clear();
         vSeeds.clear();
