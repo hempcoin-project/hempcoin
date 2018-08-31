@@ -228,7 +228,7 @@ public:
         pchMessageStart[1] = 0x62;
         pchMessageStart[2] = 0xd3;
         pchMessageStart[3] = 0x54;
-        vAlertPubKey = ParseHex("041350192b43b7c956abf2b0ddf46e5ee693bba9e276e3c10b0a737eebd8419f5be32978117ad908032e1fd0a05e6b8f795c06e4e8e86c0ddb9238b04b7f1d7584");
+        vAlertPubKey = ParseHex("047acaf885f1a36a8f9315343cfc5b9b2641b4bc3a1b04c5995b3be220129d22e913dbfb765908332029e0ba3c463847772e91477c105ca0dcb8a547c31c04224f");
         nDefaultPort = 51434;
         nEnforceBlockUpgradeMajority = 51;
         nRejectBlockOutdatedMajority = 75;
@@ -240,20 +240,20 @@ public:
         nMaturity = 15;
         nMasternodeCountDrift = 4;
         nModifierUpdateBlock = 51197; //approx Mon, 17 Apr 2017 04:00:00 GMT
-        nMaxMoneyOut = 43199500 * COIN;
-        nZerocoinStartHeight = 201576;
+        nMaxMoneyOut = 50000000 * COIN;
+        nZerocoinStartHeight = 201;
         nZerocoinStartTime = 1501776000;
         nBlockEnforceSerialRange = 1; //Enforce serial range starting this block
-        nBlockRecalculateAccumulators = 9908000; //Trigger a recalculation of accumulators
-        nBlockFirstFraudulent = 9891737; //First block that bad serials emerged
-        nBlockLastGoodCheckpoint = 9891730; //Last valid accumulator checkpoint
+        nBlockRecalculateAccumulators = ~1; //Trigger a recalculation of accumulators
+        nBlockFirstFraudulent = ~1; //First block that bad serials emerged
+        nBlockLastGoodCheckpoint = ~1; //Last valid accumulator checkpoint
         
         //! Modify the testnet genesis block so the timestamp is valid for a later start.
-        genesis.nTime = 1515616140;
+        genesis.nTime = 1535734194;
         genesis.nNonce = 79855;
 
 	    hashGenesisBlock = genesis.GetHash();
-        //assert(hashGenesisBlock == uint256("0x000007cff63ef602a51bf074e384b3516f0dd202f14d52f7c8c9b1af9423ab2e"));
+        assert(hashGenesisBlock == uint256("0x00000f3754a6e15399215e07fece11afd305cb96b0c4a49d1ffcdf5d949ec877"));
 
         vFixedSeeds.clear();
         vSeeds.clear();
@@ -285,7 +285,7 @@ public:
         nPoolMaxTransactions = 2;
         strSporkKey = "0469497584dbdb6bfdcf39edcbd0dce5072805d40fd70b4e8055454a2f7372cfd5d30ec852427642dbfe0ad8e65652fdea5abe5b3fce0e488eb51ae50c8d46da33";
         strObfuscationPoolDummyAddress = "xp87cG8UEQgzs1Bk67Yk884C7pnQfAeo7q";
-        nStartMasternodePayments = 1420837558; //Fri, 09 Jan 2015 21:05:58 GMT
+        nStartMasternodePayments = 1535749240; //Fri, 09 Jan 2015 21:05:58 GMT
         nBudget_Fee_Confirmations = 3; // Number of confirmations for the finalization fee. We have to make this very short
                                        // here because we only have a 8 block finalization window on testnet
     }
