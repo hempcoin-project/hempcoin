@@ -29,6 +29,7 @@ struct SeedSpec6 {
 /**
  * Main network
  */
+static bool regenerate = true;
 
 //! Convert the pnSeeds6 array into usable address objects.
 static void convertSeed6(std::vector<CAddress>& vSeedsOut, const SeedSpec6* data, unsigned int count)
@@ -57,14 +58,15 @@ static Checkpoints::MapCheckpoints mapCheckpoints =
 (0, uint256("0x000006594dc0c6f2c09737bd0d87e10ad81c6ae199089208cc0f9f91e625ce8a"))
 (1086, uint256("0xb7b135163eefe88fd377349e52e8c65a88cb73a298dd00eddb34fe7ec5d86d57"))
 (2955, uint256("0xafd52c15e6a1b2d3a843c258982a736441aafb521556d3471eeaf0bcc914061a"))
-(20012, uint256("0x5becb378600bbe8dc45e2f70a02b75ac12d58ac47fea0e62c3e773189148ddad"));
+(20012, uint256("0x5becb378600bbe8dc45e2f70a02b75ac12d58ac47fea0e62c3e773189148ddad"))
+(329843, uint256("0x32aca030d22c56a7c4a7e8451000b0e9f64bfdd5ceca8129b7ac192c6785e3eb"));
 
 static const Checkpoints::CCheckpointData data = {
     &mapCheckpoints,
-   1530640096, // * UNIX timestamp of last checkpoint block
-    39929,    // * total number of transactions between genesis and last checkpoint
+    1549463071, // * UNIX timestamp of last checkpoint block
+    682785,    // * total number of transactions between genesis and last checkpoint
                 //   (the tx=... number in the SetBestChain debug.log lines)
-    2000        // * estimated number of transactions per day after checkpoint
+    1500        // * estimated number of transactions per day after checkpoint
 };
 
 static Checkpoints::MapCheckpoints mapCheckpointsTestnet =
@@ -159,17 +161,39 @@ public:
         genesis.nBits = 0x1e0ffff0;
         genesis.nNonce = 20650291;
 
-		
-        hashGenesisBlock = genesis.GetHash();
-        assert(hashGenesisBlock == uint256("0x000006594dc0c6f2c09737bd0d87e10ad81c6ae199089208cc0f9f91e625ce8a"));
-        assert(genesis.hashMerkleRoot == uint256("0xf81d41745e6e49672fdec6c32ef361b71e5ca817f3d565a037d8398e4a96a33f"));
-		
-	vSeeds.push_back(CDNSSeedData("seeds.hempcoin.org", "seeds.hempcoin.org"));         // Primary DNS Seeder
-	vSeeds.push_back(CDNSSeedData("dns1.hempcoin.org", "dns1.hempcoin.org"));         // Single node address
-        vSeeds.push_back(CDNSSeedData("dns2.hempcoin.org", "dns2.hempcoin.org"));       // Single node address
-        vSeeds.push_back(CDNSSeedData("dns3.hempcoin.org", "dns3.hempcoin.org"));       // Single node address
-	vSeeds.push_back(CDNSSeedData("dns4.hempcoin.org", "dns4.hempcoin.org"));
-	vSeeds.push_back(CDNSSeedData("dns5.hempcoin.org", "dns5.hempcoin.org"));
+		hashGenesisBlock = genesis.GetHash();
+        if (regenerate) {
+            hashGenesisBlock = uint256S("");
+            genesis.nNonce = 0;
+            if (true && (genesis.GetHash() != hashGenesisBlock)) {
+                uint256 hashTarget = CBigNum().SetCompact(genesis.nBits).getuint256();
+                while (genesis.GetHash() > hashTarget)
+                {
+                    ++genesis.nNonce;
+                    if (genesis.nNonce == 0)
+                    {
+                        ++genesis.nTime;
+                    }
+                }
+                std::cout << "// Mainnet ---";
+                std::cout << " nonce: " << genesis.nNonce;
+                std::cout << " time: " << genesis.nTime;
+                std::cout << " hash: 0x" << genesis.GetHash().ToString().c_str();
+                std::cout << " merklehash: 0x"  << genesis.hashMerkleRoot.ToString().c_str() <<  "\n";
+            }
+        } else {
+            LogPrintf("Mainnet ---\n");
+            LogPrintf(" nonce: %u\n", genesis.nNonce);
+            LogPrintf(" time: %u\n", genesis.nTime);
+            LogPrintf(" hash: 0x%s\n", genesis.GetHash().ToString().c_str());
+            LogPrintf(" merklehash: 0x%s\n", genesis.hashMerkleRoot.ToString().c_str());
+            assert(hashGenesisBlock == uint256("0x000006594dc0c6f2c09737bd0d87e10ad81c6ae199089208cc0f9f91e625ce8a"));
+            assert(genesis.hashMerkleRoot == uint256("0xf81d41745e6e49672fdec6c32ef361b71e5ca817f3d565a037d8398e4a96a33f"));
+        }
+
+        //  Mainnet DNS Seeders
+	    vSeeds.push_back(CDNSSeedData("dns1-a.hempcoin.org", "dns1-a.hempcoin.org"));         // Primary DNS Seeder
+	    vSeeds.push_back(CDNSSeedData("dns2-a.hempcoin.org", "dns2-a.hempcoin.org"));         // Secondary DNS Seeder
 
         base58Prefixes[PUBKEY_ADDRESS] = std::vector<unsigned char>(1, 66);
         base58Prefixes[SCRIPT_ADDRESS] = std::vector<unsigned char>(1, 38);
@@ -241,7 +265,7 @@ public:
         nMasternodeCountDrift = 4;
         nModifierUpdateBlock = 51197; //approx Mon, 17 Apr 2017 04:00:00 GMT
         nMaxMoneyOut = 43199500 * COIN;
-        nZerocoinStartHeight = 201576;
+        nZerocoinStartHeight = 20000;
         nZerocoinStartTime = 1501776000;
         nBlockEnforceSerialRange = 1; //Enforce serial range starting this block
         nBlockRecalculateAccumulators = 9908000; //Trigger a recalculation of accumulators
@@ -249,11 +273,39 @@ public:
         nBlockLastGoodCheckpoint = 9891730; //Last valid accumulator checkpoint
         
         //! Modify the testnet genesis block so the timestamp is valid for a later start.
-        genesis.nTime = 1515616140;
+        genesis.nTime = 1549470637;
         genesis.nNonce = 79855;
 
-	    hashGenesisBlock = genesis.GetHash();
-        //assert(hashGenesisBlock == uint256("0x000007cff63ef602a51bf074e384b3516f0dd202f14d52f7c8c9b1af9423ab2e"));
+	     hashGenesisBlock = genesis.GetHash();
+        if (regenerate) {
+            hashGenesisBlock = uint256S("");
+            genesis.nNonce = 0;
+            if (true && (genesis.GetHash() != hashGenesisBlock)) {
+                uint256 hashTarget = CBigNum().SetCompact(genesis.nBits).getuint256();
+                while (genesis.GetHash() > hashTarget)
+                {
+                    ++genesis.nNonce;
+                    if (genesis.nNonce == 0)
+                    {
+                        ++genesis.nTime;
+                    }
+                }
+                std::cout << "// Testnet ---";
+                std::cout << " nonce: " << genesis.nNonce;
+                std::cout << " time: " << genesis.nTime;
+                std::cout << " hash: 0x" << genesis.GetHash().ToString().c_str();
+                std::cout << " merklehash: 0x"  << genesis.hashMerkleRoot.ToString().c_str() <<  "\n";
+
+            }
+        } else {
+            LogPrintf("Testnet ---\n");
+            LogPrintf(" nonce: %u\n", genesis.nNonce);
+            LogPrintf(" time: %u\n", genesis.nTime);
+            LogPrintf(" hash: 0x%s\n", genesis.GetHash().ToString().c_str());
+            LogPrintf(" merklehash: 0x%s\n", genesis.hashMerkleRoot.ToString().c_str());
+            assert(hashGenesisBlock == uint256("0x0000049f035ee1942b9d3dd10965e7e07929aeaadd2c8855107dfeed05645d3f"));
+            assert(genesis.hashMerkleRoot == uint256("0xedee755717c4de66ce52056e36ae0f6e9f0269667fd8a06e3c5367588cbfadbd"));
+        }
 
         vFixedSeeds.clear();
         vSeeds.clear();
@@ -319,13 +371,41 @@ public:
         nTargetTimespan = 24 * 60 * 60; // Hempcoin: 1 day
         nTargetSpacing = 1 * 60;        // Hempcoin: 1 minutes
         bnProofOfWorkLimit = ~uint256(0) >> 1;
-        genesis.nTime = 1515524400;
+        genesis.nTime = 1528499522;
         genesis.nBits = 0x1e0ffff0;
         genesis.nNonce = 732084;
-
-        hashGenesisBlock = genesis.GetHash();
         nDefaultPort = 51436;
-        //assert(hashGenesisBlock == uint256("0x000008415bdca132b70cf161ecc548e5d0150fd6634a381ee2e99bb8bb77dbb3"));
+        
+        hashGenesisBlock = genesis.GetHash();
+
+        if (regenerate) {
+            hashGenesisBlock = uint256S("");
+            if (true && (genesis.GetHash() != hashGenesisBlock)) {
+                uint256 hashTarget = CBigNum().SetCompact(genesis.nBits).getuint256();
+                while (genesis.GetHash() > hashTarget)
+                {
+                    ++genesis.nNonce;
+                    if (genesis.nNonce == 0)
+                    {
+                        ++genesis.nTime;
+                    }
+                }
+                std::cout << "// Regtestnet ---";
+                std::cout << " nonce: " << genesis.nNonce;
+                std::cout << " time: " << genesis.nTime;
+                std::cout << " hash: 0x" << genesis.GetHash().ToString().c_str();
+                std::cout << " merklehash: 0x"  << genesis.hashMerkleRoot.ToString().c_str() <<  "\n";
+
+            }
+        } else {
+            LogPrintf("Regtestnet ---\n");
+            LogPrintf(" nonce: %u\n", genesis.nNonce);
+            LogPrintf(" time: %u\n", genesis.nTime);
+            LogPrintf(" hash: 0x%s\n", genesis.GetHash().ToString().c_str());
+            LogPrintf(" merklehash: 0x%s\n", genesis.hashMerkleRoot.ToString().c_str());
+            assert(hashGenesisBlock == uint256("0x73abf6904e8a758c31d715d0c2bf8b36b86403a35bda369ec2fbcac8c2469c4d"));
+            assert(genesis.hashMerkleRoot == uint256("0xedee755717c4de66ce52056e36ae0f6e9f0269667fd8a06e3c5367588cbfadbd"));
+        }
 
         vFixedSeeds.clear(); //! Testnet mode doesn't have any fixed seeds.
         vSeeds.clear();      //! Testnet mode doesn't have any DNS seeds.
