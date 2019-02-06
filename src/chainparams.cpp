@@ -29,7 +29,7 @@ struct SeedSpec6 {
 /**
  * Main network
  */
-static bool regenerate = true;
+static bool regenerate = false;
 
 //! Convert the pnSeeds6 array into usable address objects.
 static void convertSeed6(std::vector<CAddress>& vSeedsOut, const SeedSpec6* data, unsigned int count)
@@ -166,8 +166,7 @@ public:
             hashGenesisBlock = uint256S("");
             genesis.nNonce = 0;
             if (true && (genesis.GetHash() != hashGenesisBlock)) {
-                uint256 hashTarget = CBigNum().SetCompact(genesis.nBits).getuint256();
-                while (genesis.GetHash() > hashTarget)
+                while (genesis.GetHash() > bnProofOfWorkLimit)
                 {
                     ++genesis.nNonce;
                     if (genesis.nNonce == 0)
@@ -274,15 +273,14 @@ public:
         
         //! Modify the testnet genesis block so the timestamp is valid for a later start.
         genesis.nTime = 1549470637;
-        genesis.nNonce = 79855;
+        genesis.nNonce = 960725;
 
-	     hashGenesisBlock = genesis.GetHash();
-        if (regenerate) {
+	    hashGenesisBlock = genesis.GetHash();
+            if (regenerate) {
             hashGenesisBlock = uint256S("");
             genesis.nNonce = 0;
             if (true && (genesis.GetHash() != hashGenesisBlock)) {
-                uint256 hashTarget = CBigNum().SetCompact(genesis.nBits).getuint256();
-                while (genesis.GetHash() > hashTarget)
+                while (genesis.GetHash() > bnProofOfWorkLimit)
                 {
                     ++genesis.nNonce;
                     if (genesis.nNonce == 0)
@@ -303,8 +301,8 @@ public:
             LogPrintf(" time: %u\n", genesis.nTime);
             LogPrintf(" hash: 0x%s\n", genesis.GetHash().ToString().c_str());
             LogPrintf(" merklehash: 0x%s\n", genesis.hashMerkleRoot.ToString().c_str());
-            assert(hashGenesisBlock == uint256("0x0000049f035ee1942b9d3dd10965e7e07929aeaadd2c8855107dfeed05645d3f"));
-            assert(genesis.hashMerkleRoot == uint256("0xedee755717c4de66ce52056e36ae0f6e9f0269667fd8a06e3c5367588cbfadbd"));
+            assert(hashGenesisBlock == uint256("0x00000d89f37669d8e6228bc0f3e601806fb544504df4d25db9abdf53680ec3d8"));
+            assert(genesis.hashMerkleRoot == uint256("0xf81d41745e6e49672fdec6c32ef361b71e5ca817f3d565a037d8398e4a96a33f"));
         }
 
         vFixedSeeds.clear();
@@ -373,16 +371,16 @@ public:
         bnProofOfWorkLimit = ~uint256(0) >> 1;
         genesis.nTime = 1528499522;
         genesis.nBits = 0x1e0ffff0;
-        genesis.nNonce = 732084;
+        genesis.nNonce = 1;
         nDefaultPort = 51436;
         
         hashGenesisBlock = genesis.GetHash();
 
         if (regenerate) {
             hashGenesisBlock = uint256S("");
+            genesis.nNonce = 0;
             if (true && (genesis.GetHash() != hashGenesisBlock)) {
-                uint256 hashTarget = CBigNum().SetCompact(genesis.nBits).getuint256();
-                while (genesis.GetHash() > hashTarget)
+                while (genesis.GetHash() > bnProofOfWorkLimit)
                 {
                     ++genesis.nNonce;
                     if (genesis.nNonce == 0)
@@ -403,8 +401,8 @@ public:
             LogPrintf(" time: %u\n", genesis.nTime);
             LogPrintf(" hash: 0x%s\n", genesis.GetHash().ToString().c_str());
             LogPrintf(" merklehash: 0x%s\n", genesis.hashMerkleRoot.ToString().c_str());
-            assert(hashGenesisBlock == uint256("0x73abf6904e8a758c31d715d0c2bf8b36b86403a35bda369ec2fbcac8c2469c4d"));
-            assert(genesis.hashMerkleRoot == uint256("0xedee755717c4de66ce52056e36ae0f6e9f0269667fd8a06e3c5367588cbfadbd"));
+            assert(hashGenesisBlock == uint256("0x7dc736c75a2c73b92066464ac6bc7cc025e93c52cfa2ff25ee9aaa55509b37a1"));
+            assert(genesis.hashMerkleRoot == uint256("0xf81d41745e6e49672fdec6c32ef361b71e5ca817f3d565a037d8398e4a96a33f"));
         }
 
         vFixedSeeds.clear(); //! Testnet mode doesn't have any fixed seeds.
