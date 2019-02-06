@@ -69,7 +69,4 @@ deploy:
   upload-dir: $TRAVIS_JOB_NUMBER
   acl: public_read
   on:
-    repo: hempcoin-project/hempcoin
-    cache_control: "max-age=21600"
-    on:
-      all_branches: true
+    all_branches: true
