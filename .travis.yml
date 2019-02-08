@@ -59,6 +59,7 @@ before_deploy:
       - git config --local user.email "dev@hempcoin.org"
       - git tag "$(date +'%Y%m%d%H%M%S')-$(git log --format=%h -1)"
       - "./pre-deploy.sh"
+
 deploy:
   provider: s3
   access_key_id: $AWS_ACCESS_KEY_ID
@@ -69,7 +70,4 @@ deploy:
   upload-dir: $TRAVIS_JOB_NUMBER
   acl: public_read
   on:
-    repo: hempcoin-project/hempcoin
-    cache_control: "max-age=21600"
-    on:
-      all_branches: true
+    all_branches: true 

@@ -2170,7 +2170,7 @@ int64_t GetMasternodePayment(int nHeight, int64_t blockValue, int nMasternodeCou
         ret = blockValue  / 100 * 80;
     } else {
         // increasing the MN reward to 75% as we are decreasing the block value to make room for governance
-        ret = blockValue  / 100 * 65;
+        ret = blockValue  / 100 * 90;
     }
 
     return ret;
